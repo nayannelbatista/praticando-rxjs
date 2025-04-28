@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+
+import { BuscaCepComponent } from './cep/busca-cep/busca-cep.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [BuscaCepComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
