@@ -1,0 +1,27 @@
+<mat-card class="container">
+  <h2>Buscar endereço por CEP</h2>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Digite o CEP</mat-label>
+    <input matInput [formControl]="cepControl" maxlength="9" placeholder="Ex: 01001-000" />
+  </mat-form-field>
+
+  @if (cepResposta$ | async; as cepResposta) {
+    @switch (true) {
+      @case (cepResposta?.erro) {
+        <mat-error>{{ cepResposta.mensagem }}</mat-error>
+      }
+      @case (cepResposta?.carregando) {
+        <p>Carregando...</p>
+      }
+      @default {
+        <mat-card class="dados-cep">
+          <p><strong>Logradouro:</strong> {{ cepResposta.logradouro }}</p>
+          <p><strong>Bairro:</strong> {{ cepResposta.bairro }}</p>
+          <p><strong>Cidade/UF:</strong> {{ cepResposta.localidade }} - {{ cepResposta.uf }}</p>
+          <p><strong>CEP:</strong> {{ cepResposta.cep }}</p>
+        </mat-card>
+      }
+    }
+  }
+</mat-card>
